@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170702161618) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "experiences", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"

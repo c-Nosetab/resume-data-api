@@ -6,7 +6,7 @@ class Api::V1::ExperiencesController < ApplicationController
 
   def post
     @experience = Experience.create(
-                                     start_date: Time.utc(params[:start_year), params[:start_month], params[:start_day]),
+                                     start_date: Time.utc(params[:start_year], params[:start_month], params[:start_day]),
                                      end_date: Time.utc(params[:end_year], params[:end_month], params[:end_day]),
                                      job_title: params[:job_title],
                                      company_name: params[:company_name],
@@ -26,7 +26,7 @@ class Api::V1::ExperiencesController < ApplicationController
   def update
     @experience = Experience.find(params[:exp_id])
     @experience.update(
-                       start_date: Time.utc(params[:start_year), params[:start_month], params[:start_day]),
+                       start_date: Time.utc(params[:start_year], params[:start_month], params[:start_day]),
                        end_date: Time.utc(params[:end_year], params[:end_month], params[:end_day]),
                        job_title: params[:job_title],
                        company_name: params[:company_name],

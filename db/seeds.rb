@@ -57,4 +57,35 @@
 #     count += 5
 
 #   end
-# end
+
+degrees = ["BM of Music", "BS of Biomechanics", "Computer Science", "Art", "Economics", "Psycology", "Education", "Underwater Basket Weaving", "Engineering", "Nursing", "Law"]
+
+Student.all.each do |student|  #get rid of this line to test database!!!!!!!#############
+  Education.create!(
+                    start_date: Time.utc(rand(2000..2007)),
+                    end_date: Time.utc(rand(2007...2011)),
+                    degree: degrees.pop,
+                    university_name: Faker::Educator.university,
+                    details: Faker::Lorem.paragraph(2),
+                    student_id: student.id
+      )
+  end
+
+  10.times do
+    Skill.create!(
+                  skill_name: Faker::Job.key_skill,
+                  student_id: student_id
+                  )
+
+  end
+
+  Capstone.create!(
+                    name: "#{student.first_name}'s Capstone"
+                    description: Faker::Lorem.paragraph
+                    url: Faker::Internet.url("#{student.first_name}.com")
+                    screenshot:
+
+    )
+
+
+end

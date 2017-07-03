@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   namespace :api do
       namespace :v1 do
-        get '/' => 'students#index'
         get '/students' => 'students#index'
         post '/students' => 'studentsr#post'
         get '/students/:id' => 'students#show'
@@ -17,6 +16,8 @@ Rails.application.routes.draw do
         get '/students/:user_id/experiences/:exp_id/edit' => 'experiences#edit'
         patch '/students/:user_id/experiences/:exp_id' => 'experiences#update'
         delete '/students/:user_id/experiences/:exp_id' => 'experiences#destroy'
+
+
       end
     end
 

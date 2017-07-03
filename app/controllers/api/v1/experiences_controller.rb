@@ -4,7 +4,7 @@ class Api::V1::ExperiencesController < ApplicationController
     @experiences = Experience.where(student_id: params[:user_id])
   end
 
-  def post
+  def create
     @experience = Experience.create(
                                      start_date: Time.utc(params[:start_year], params[:start_month], params[:start_day]),
                                      end_date: Time.utc(params[:end_year], params[:end_month], params[:end_day]),

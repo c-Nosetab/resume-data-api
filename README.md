@@ -1,24 +1,30 @@
-# README
+Hey guys, to get to your specific portion of the api you must follow these conventions:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+Everything will be proceeded with this:
+https://secure-ravine-87574.herokuapp.com
 
-* Ruby version
 
-* System dependencies
+Afterwards, you must use the following to access the students json:
+/api/v1/students.json
 
-* Configuration
+To access the speicific student will be
+/api/v1/students/1.json
 
-* Database creation
+After, depending on the resource you are looking into, you must follow this syntax:
 
-* Database initialization
+Types: skills, educations, experiences, capstones
 
-* How to run the test suite
+/api/v1/students/1/skills.json
+/api/v1/students/1/skills/1.json
+/api/v1/students/1/skills/1/edit.json
 
-* Services (job queues, cache servers, search engines, etc.)
+All post requests should go to the base version. For example:
+/api/v1/students/1/skills.json
 
-* Deployment instructions
+All update and patch request should go to
+/api/v1/students/1/skills/1.json
 
-* ...
+
+
+

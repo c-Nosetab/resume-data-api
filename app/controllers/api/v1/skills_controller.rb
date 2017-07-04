@@ -35,5 +35,5 @@ class Api::V1::SkillsController < ApplicationController
 
     render json: {message: 'Skill Deleted', status: 200}
   end
-  
+
 end

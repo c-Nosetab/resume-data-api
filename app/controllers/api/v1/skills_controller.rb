@@ -33,7 +33,7 @@ class Api::V1::SkillsController < ApplicationController
     @skill = Skill.find(params[:skill_id])
     @skill.destroy
 
-    render json: {message 'Skill Deleted', status: 200}
+    render json: {message: 'Skill Deleted', status: 200}
   end
   
 end

@@ -41,6 +41,6 @@ class Api::V1::EducationsController < ApplicationController
     @education = Education.find(params[:edu_id])
     @education.destroy
 
-    render json: {message 'Education Deleted', status: 200}
+    render json: {message: 'Education Deleted', status: 200}
   end
 end

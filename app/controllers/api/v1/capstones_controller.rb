@@ -39,7 +39,7 @@ class Api::V1::CapstonesController < ApplicationController
     @capstone = Capstone.find(params[:cap_id])
     @capstone.destroy
 
-    render json: {message 'Capstone Deleted', status: 200}
+    render json: {message: 'Capstone Deleted', status: 200}
   end
 
 end

@@ -17,17 +17,16 @@ class Api::V1::SkillsController < ApplicationController
   end
 
   def edit
-    @skill = Skill.find(params[:skill_id])
-
-    unless params[:user_id] == @skill.student_id
+    if params[:user_id].to_i == Skill.find(params[:skill_id]).student_id
+      @skill = Skill.find(params[:skill_id])
       render :show
     end
   end
 
   def update
-    @skill = Skill.find(params[:skill_id])
 
-    if params[:user_id] == @still.student_id
+    if params[:user_id].to_i == Skill.find(params[:skill_id]).student_id
+      @skill = Skill.find(params[:skill_id])
       @skill.update(
                     skill_name: params[:skill_name],
                     student_id: params[:student_id]
@@ -39,9 +38,9 @@ class Api::V1::SkillsController < ApplicationController
   end
 
   def destroy
-    @skill = Skill.find(params[:skill_id])
 
-    if params[:user_id] == @still.student_id
+    if params[:user_id].to_i == Skill.find(params[:skill_id]).student_id
+      @skill = Skill.find(params[:skill_id])
       @skill.destroy
       render json: {message: 'Skill Deleted', status: 200}
     else

@@ -23,21 +23,20 @@ class Api::V1::StudentsController < ApplicationController
   end
 
   def show
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:user_id])
   end
 
   def edit
-    @student = Student.find(params[:id])
-
-    unless params[:user_id] == @student.id
+    if params[:user_id].to_i == Student.find(params[:user_id]).id
+      @student = Student.find(params[:user_id])
       render :show
     end
   end
 
   def update
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:user_id])
 
-    if params[:user_id] == @student.id
+    if params[:user_id].to_i == Student.find(params[:user_id]).id
       @student.update(
                       first_name: params[:first_name],
                       last_name: params[:last_name],
@@ -59,9 +58,9 @@ class Api::V1::StudentsController < ApplicationController
   end
 
   def destroy
-    @student = Student.find(params[:id])
+    if Student.find(params[:user_id]).id == params[:user_id].to_i
+      @student = Student.find(params[:user_id])
 
-    if @student.id == params[:user_id]
       @student.delete
       render json: {message: 'Student Deleted.', status: 200}
     else

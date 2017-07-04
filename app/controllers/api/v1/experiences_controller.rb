@@ -1,7 +1,7 @@
 class Api::V1::ExperiencesController < ApplicationController
 
   def index
-    @experiences = Experience.where(student_id: params[:user_id])
+    @experiences = Experience.where(student_id: params[:user_id].to_i)
   end
 
   def create
@@ -21,18 +21,17 @@ class Api::V1::ExperiencesController < ApplicationController
   end
 
   def edit
-    @experience = Experience.find(params[:exp_id])
-
-    unless params[:user_id] == @experience.student_id
+    if params[:user_id].to_i == Experience.find(params[:exp_id]).student_id
+      @experience = Experience.find(params[:exp_id])
       render :show
     end
 
   end
 
   def update
-    @experience = Experience.find(params[:exp_id])
 
-    if params[:user_id] == @experience.student_id
+    if params[:user_id].to_i == Experience.find(params[:exp_id]).student_id
+      @experience = Experience.find(params[:exp_id])
       @experience.update(
                          start_date: Time.utc(params[:start_year], params[:start_month], params[:start_day]),
                          end_date: Time.utc(params[:end_year], params[:end_month], params[:end_day]),
@@ -48,9 +47,9 @@ class Api::V1::ExperiencesController < ApplicationController
   end
 
   def destroy
-    @experience = Experience.find(params[:exp_id])
 
-    if params[:id] == @experience.student_id
+    if params[:user_id].to_i == Experience.find(params[:exp_id]).student_id
+      @experience = Experience.find(params[:exp_id])
       @experience.delete
       render json: {message: 'Experience Deleted', status: 200}
     else

@@ -21,9 +21,8 @@ class Api::V1::EducationsController < ApplicationController
   end
 
   def edit
-    @education = Education.find(params[:edu_id])
-
-    unless params[:user_id] == @education.student_id
+    if params[:user_id].to_i == Education.find(params[:edu_id]).student_id
+      @education = Education.find(params[:edu_id])
       render :show
     end
   end
@@ -31,7 +30,7 @@ class Api::V1::EducationsController < ApplicationController
   def update
     @education = Education.find(params[:edu_id])
 
-    if params[:user_id] == @education.student_id
+    if params[:user_id].to_i == Education.find(params[:edu_id]).student_id
       @education.update(
                        start_date: params[:start_date],
                        end_date: params[:end_date],
@@ -47,9 +46,9 @@ class Api::V1::EducationsController < ApplicationController
   end
 
   def destroy
-    @education = Education.find(params[:edu_id])
 
-    if params[:user_id] == @education.student_id
+    if params[:user_id].to_i == Education.find(params[:edu_id]).student_id
+      @education = Education.find(params[:edu_id])
       @education.destroy
       render json: {message: 'Education Deleted', status: 200}
     else

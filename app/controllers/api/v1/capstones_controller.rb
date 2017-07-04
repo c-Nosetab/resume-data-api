@@ -10,7 +10,7 @@ class Api::V1::CapstonesController < ApplicationController
                                 description: params[:description],
                                 url: params[:url],
                                 screenshot: params[:screenshot],
-                                student_id: params[:student_id]
+                                student_id: params[:user_id]
                                 )
     render :show
   end
@@ -20,18 +20,16 @@ class Api::V1::CapstonesController < ApplicationController
   end
 
   def edit
+    if params[:user_id].to_i == Capstone.find(params[:cap_id]).student_id
       @capstone = Capstone.find(params[:cap_id])
-
-    unless params[:user_id] == @capstone.student_id
       render :show
     end
-
   end
 
   def update
-    @capstone = Capstone.find(params[:cap_id])
 
-    if params[:user_id] == @capstone.student_id
+    if params[:user_id].to_i == Capstone.find(params[:cap_id]).student_id
+      @capstone = Capstone.find(params[:cap_id])
       @capstone.update(
                     name: params[:name],
                     description: params[:description],
@@ -46,9 +44,9 @@ class Api::V1::CapstonesController < ApplicationController
   end
 
   def destroy
-    @capstone = Capstone.find(params[:cap_id])
 
-      if params[:user_id] == @capstone.student_id
+      if params[:user_id].to_i == Capstone.find(params[:cap_id]).student_id
+        @capstone = Capstone.find(params[:cap_id])
         @capstone.destroy
         render json: {message: 'Capstone Deleted', status: 200}
       else

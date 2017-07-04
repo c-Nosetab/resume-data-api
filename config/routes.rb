@@ -6,11 +6,11 @@ Rails.application.routes.draw do
       get '/' => 'students#index'
       get '/students' => 'students#index'
       post '/students' => 'studentsr#post'
-      get '/students/:id' => 'students#show'
-      get '/students/:id/edit' => 'students#edit'
-      patch '/students/:id' => 'students#update'
-      delete '/students/:id' => 'students#destroy'
-      
+      get '/students/:user_id' => 'students#show'
+      get '/students/:user_id/edit' => 'students#edit'
+      patch '/students/:user_id' => 'students#update'
+      delete '/students/:user_id' => 'students#destroy'
+
       get '/students/:user_id/experiences' => 'experiences#index'
       post '/students/:user_id/experiences' => 'experiences#post'
       get '/students/:user_id/experiences/:exp_id' => 'experiences#show'

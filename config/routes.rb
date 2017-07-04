@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get '/students/:id/edit' => 'students#edit'
       patch '/students/:id' => 'students#update'
       delete '/students/:id' => 'students#destroy'
-
+      
       get '/students/:user_id/experiences' => 'experiences#index'
       post '/students/:user_id/experiences' => 'experiences#post'
       get '/students/:user_id/experiences/:exp_id' => 'experiences#show'
@@ -38,8 +38,7 @@ Rails.application.routes.draw do
       get '/students/:user_id/capstones/:cap_id/edit' => 'capstones#edit'
       patch '/students/:user_id/capstones/:cap_id' => 'capstones#update'
       delete '/students/:user_id/capstones/:cap_id' => 'capstones#destroy'
+
     end
   end
-
-
 end
